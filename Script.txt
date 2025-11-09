@@ -1,0 +1,82 @@
+CREATE TABLE PUBLISHER (
+    CodigoPublisher INT PRIMARY KEY,
+    Nombre VARCHAR2(255) NOT NULL,
+    Region VARCHAR2(255),
+    PrecioSuscripcion NUMBER(10,2),
+    EnServicio VARCHAR2(50)
+);
+CREATE TABLE GENERO (
+    IdGenero INT PRIMARY KEY,
+    Nombre VARCHAR2(255) NOT NULL,
+    Calificacion INT,
+    CodigoPublisher INT,
+    CONSTRAINT FK_GENERO_PUBLISHER FOREIGN KEY (CodigoPublisher) REFERENCES PUBLISHER(CodigoPublisher)
+);
+CREATE TABLE VIDEOJUEGO (
+    CodigoSerie INT PRIMARY KEY,
+    Nombre VARCHAR2(255) NOT NULL,
+    Estado VARCHAR2(50),
+    Entregado VARCHAR2(2), 
+    Precio NUMBER(10,2),
+    CodigoPublisher INT,
+    CodigoVenta INT,
+    CONSTRAINT FK_VIDEOJUEGOS_PUBLISHER FOREIGN KEY (CodigoPublisher) REFERENCES PUBLISHER(CodigoPublisher),
+    CONSTRAINT FK_VIDEOJUEGOS_VENTA FOREIGN KEY (CodigoVenta) REFERENCES VENTA(CodigoVenta)
+);
+CREATE TABLE VENTA (
+    CodigoVenta INT PRIMARY KEY,
+    Fecha DATE,
+    Cliente VARCHAR2(255),
+    TotalVenta NUMBER(10,2)
+);
+INSERT INTO VENTA (CodigoVenta, Fecha, Cliente, TotalVenta) VALUES (1, TO_DATE('2025-01-15', 'YYYY-MM-DD'), 'Carlos Mendoza', 59.99);
+INSERT INTO VENTA (CodigoVenta, Fecha, Cliente, TotalVenta) VALUES (2, TO_DATE('2025-02-03', 'YYYY-MM-DD'), 'Ana Torres', 129.50);
+INSERT INTO VENTA (CodigoVenta, Fecha, Cliente, TotalVenta) VALUES (3, TO_DATE('2025-02-20', 'YYYY-MM-DD'), 'Luis Rojas', 45.75);
+INSERT INTO VENTA (CodigoVenta, Fecha, Cliente, TotalVenta) VALUES (4, TO_DATE('2025-03-10', 'YYYY-MM-DD'), 'María López', 89.90);
+INSERT INTO VENTA (CodigoVenta, Fecha, Cliente, TotalVenta) VALUES (5, TO_DATE('2025-04-05', 'YYYY-MM-DD'), 'Javier Díaz', 199.99);
+INSERT INTO VENTA (CodigoVenta, Fecha, Cliente, TotalVenta) VALUES (6, TO_DATE('2025-05-18', 'YYYY-MM-DD'), 'Sofía Ramírez', 34.99);
+INSERT INTO VENTA (CodigoVenta, Fecha, Cliente, TotalVenta) VALUES (7, TO_DATE('2025-06-22', 'YYYY-MM-DD'), 'Diego Castro', 79.95);
+INSERT INTO VENTA (CodigoVenta, Fecha, Cliente, TotalVenta) VALUES (8, TO_DATE('2025-07-30', 'YYYY-MM-DD'), 'Valentina Ortega', 149.00);
+INSERT INTO VENTA (CodigoVenta, Fecha, Cliente, TotalVenta) VALUES (9, TO_DATE('2025-08-14', 'YYYY-MM-DD'), 'Andrés Silva', 29.99);
+INSERT INTO VENTA (CodigoVenta, Fecha, Cliente, TotalVenta) VALUES (10, TO_DATE('2025-09-27', 'YYYY-MM-DD'), 'Camila Herrera', 99.99);
+INSERT INTO PUBLISHER (CodigoPublisher, Nombre, Region, PrecioSuscripcion, EnServicio) VALUES (101, 'Nintendo', 'Japón', 29.99, 'Activo');
+INSERT INTO PUBLISHER (CodigoPublisher, Nombre, Region, PrecioSuscripcion, EnServicio) VALUES (102, 'Sony Interactive Entertainment', 'EE.UU.', 59.99, 'Activo');
+INSERT INTO PUBLISHER (CodigoPublisher, Nombre, Region, PrecioSuscripcion, EnServicio) VALUES (103, 'Microsoft Gaming', 'EE.UU.', 49.99, 'Activo');
+INSERT INTO PUBLISHER (CodigoPublisher, Nombre, Region, PrecioSuscripcion, EnServicio) VALUES (104, 'Electronic Arts', 'EE.UU.', 39.99, 'Activo');
+INSERT INTO PUBLISHER (CodigoPublisher, Nombre, Region, PrecioSuscripcion, EnServicio) VALUES (105, 'Ubisoft', 'Francia', 24.99, 'Activo');
+INSERT INTO PUBLISHER (CodigoPublisher, Nombre, Region, PrecioSuscripcion, EnServicio) VALUES (106, 'Capcom', 'Japón', 19.99, 'Activo');
+INSERT INTO PUBLISHER (CodigoPublisher, Nombre, Region, PrecioSuscripcion, EnServicio) VALUES (107, 'Square Enix', 'Japón', 34.99, 'Activo');
+INSERT INTO PUBLISHER (CodigoPublisher, Nombre, Region, PrecioSuscripcion, EnServicio) VALUES (108, 'Bandai Namco', 'Japón', 27.50, 'Activo');
+INSERT INTO PUBLISHER (CodigoPublisher, Nombre, Region, PrecioSuscripcion, EnServicio) VALUES (109, 'Activision Blizzard', 'EE.UU.', 44.99, 'Activo');
+INSERT INTO PUBLISHER (CodigoPublisher, Nombre, Region, PrecioSuscripcion, EnServicio) VALUES (110, 'Sega', 'Japón', 22.99, 'Activo');
+INSERT INTO GENERO (IdGenero, Nombre, Calificacion, CodigoPublisher) VALUES (1, 'Plataformas', 9, 101);
+INSERT INTO GENERO (IdGenero, Nombre, Calificacion, CodigoPublisher) VALUES (2, 'Acción-Aventura', 10, 101);
+INSERT INTO GENERO (IdGenero, Nombre, Calificacion, CodigoPublisher) VALUES (3, 'Shooter en Primera Persona', 9, 102);
+INSERT INTO GENERO (IdGenero, Nombre, Calificacion, CodigoPublisher) VALUES (4, 'Carreras', 8, 103);
+INSERT INTO GENERO (IdGenero, Nombre, Calificacion, CodigoPublisher) VALUES (5, 'Deportes', 7, 104);
+INSERT INTO GENERO (IdGenero, Nombre, Calificacion, CodigoPublisher) VALUES (6, 'Rol (RPG)', 10, 107);
+INSERT INTO GENERO (IdGenero, Nombre, Calificacion, CodigoPublisher) VALUES (7, 'Peleas', 8, 106);
+INSERT INTO GENERO (IdGenero, Nombre, Calificacion, CodigoPublisher) VALUES (8, 'Estrategia en Tiempo Real', 7, 105);
+INSERT INTO GENERO (IdGenero, Nombre, Calificacion, CodigoPublisher) VALUES (9, 'Battle Royale', 9, 109);
+INSERT INTO GENERO (IdGenero, Nombre, Calificacion, CodigoPublisher) VALUES (10, 'Arcade', 8, 110);
+INSERT INTO VIDEOJUEGO (CodigoSerie, Nombre, Estado, Entregado, Precio, CodigoPublisher, CodigoVenta) 
+VALUES (111, 'The Legend of Zelda: Echoes', 'Disponible', 'SI', 59.99, 101, 1);
+INSERT INTO VIDEOJUEGO (CodigoSerie, Nombre, Estado, Entregado, Precio, CodigoPublisher, CodigoVenta) 
+VALUES (222, 'God of War: Ragnarok II', 'En desarrollo', 'NO', 69.99, 102, 2);
+INSERT INTO VIDEOJUEGO (CodigoSerie, Nombre, Estado, Entregado, Precio, CodigoPublisher, CodigoVenta) 
+VALUES (333, 'Halo Infinite: Season 3', 'Disponible', 'SI', 49.99, 103, 3);
+INSERT INTO VIDEOJUEGO (CodigoSerie, Nombre, Estado, Entregado, Precio, CodigoPublisher, CodigoVenta) 
+VALUES (444, 'FIFA 26', 'Próximo lanzamiento', 'NO', 59.99, 104, 4);
+INSERT INTO VIDEOJUEGO (CodigoSerie, Nombre, Estado, Entregado, Precio, CodigoPublisher, CodigoVenta) 
+VALUES (555, 'Assassin''s Creed: Atlantis', 'Disponible', 'SI', 44.99, 105, 5);
+INSERT INTO VIDEOJUEGO (CodigoSerie, Nombre, Estado, Entregado, Precio, CodigoPublisher, CodigoVenta) 
+VALUES (666, 'Resident Evil: Rebirth', 'Disponible', 'SI', 54.99, 106, 6);
+INSERT INTO VIDEOJUEGO (CodigoSerie, Nombre, Estado, Entregado, Precio, CodigoPublisher, CodigoVenta) 
+VALUES (777, 'Final Fantasy XVI: Part II', 'En desarrollo', 'NO', 64.99, 107, 7);
+INSERT INTO VIDEOJUEGO (CodigoSerie, Nombre, Estado, Entregado, Precio, CodigoPublisher, CodigoVenta) 
+VALUES (888, 'Tekken 9', 'Disponible', 'SI', 59.99, 108, 8);
+INSERT INTO VIDEOJUEGO (CodigoSerie, Nombre, Estado, Entregado, Precio, CodigoPublisher, CodigoVenta) 
+VALUES (999, 'Call of Duty: Black Ops 7', 'Próximo lanzamiento', 'NO', 69.99, 109, 9);
+INSERT INTO VIDEOJUEGO (CodigoSerie, Nombre, Estado, Entregado, Precio, CodigoPublisher, CodigoVenta) 
+VALUES (100, 'Sonic Frontiers 2', 'Disponible', 'SI', 39.99, 110, 10);
+COMMIT;

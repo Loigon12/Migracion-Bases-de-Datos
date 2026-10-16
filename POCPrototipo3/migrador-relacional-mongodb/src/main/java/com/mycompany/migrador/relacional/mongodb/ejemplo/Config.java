@@ -11,9 +11,9 @@ package com.mycompany.migrador.relacional.mongodb.ejemplo;
 public class Config {
     // Base de datos relacional
     public static final String DB_TYPE = "oracle"; 
-    public static final String RELATIONAL_URL = "jdbc:oracle:thin:@192.168.1.37:1522:XE";
-    public static final String USERNAME = "PI2025";
-    public static final String PASSWORD = "PI2025";
+    public static final String RELATIONAL_URL = "jdbc:oracle:thin:@192.168.1.37:9999:XE";
+    public static final String USERNAME = "NAME";
+    public static final String PASSWORD = "NAME";
 
     // MongoDB
     public static final String MONGO_URI = "mongodb://localhost:27017";
